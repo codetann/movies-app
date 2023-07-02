@@ -1,27 +1,16 @@
-import { useState, useEffect } from "react";
-import { getPopularMovies } from "./api";
-import "./App.css";
+import { VStack } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from "./pages";
 
 function App() {
-  const [popular, setPopular] = useState([]);
-
-  const handleFetch = async () => {
-    const data = await getPopularMovies();
-
-    setPopular(data);
-  };
-
-  useEffect(() => {
-    handleFetch();
-  }, []);
-
   return (
-    <>
-      <p className="test">Movie App</p>
-      {popular.map((movie) => (
-        <p key={movie.id}>{movie.title}</p>
-      ))}
-    </>
+    <VStack w="100vw" h="100vh" background="#0f1018">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+    </VStack>
   );
 }
 
