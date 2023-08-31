@@ -1,5 +1,5 @@
 import { HStack, VStack, Text, Box, Button } from "@chakra-ui/react";
-import { FaHome, FaFilm, FaTv, FaHeadSideMask } from "react-icons/fa";
+import { FaHome, FaFilm, FaTv, FaHeart } from "react-icons/fa";
 import { BsPersonFill } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
 import React from "react";
@@ -15,6 +15,9 @@ export default function Navigation() {
         <NavLink icon={<FaFilm />} url="/movies" label="Movies" />
         <NavLink icon={<FaTv />} url="/tv-shows" label="TV Shows" />
         <NavLink icon={<BsPersonFill />} url="/people" label="People" />
+      </VStack>
+      <VStack gap="1rem" w="100%" marginTop="auto">
+        <NavLink icon={<FaHeart />} url="/favorites" label="Favorites" />
       </VStack>
     </VStack>
   );
