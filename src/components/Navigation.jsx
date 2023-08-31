@@ -1,7 +1,7 @@
-import { HStack, VStack, Text, Box } from "@chakra-ui/react";
+import { HStack, VStack, Text, Box, Button } from "@chakra-ui/react";
 import { FaHome, FaFilm, FaTv, FaHeadSideMask } from "react-icons/fa";
 import { BsPersonFill } from "react-icons/bs";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import React from "react";
 
 export default function Navigation() {
@@ -22,8 +22,14 @@ export default function Navigation() {
 
 function NavLink({ icon, url, label }) {
   const location = useLocation();
-
+  const navigate = useNavigate();
   const isActive = location.pathname === url;
+
+  const handleClick = () => {
+    if (!isActive) {
+      navigate(url);
+    }
+  };
   return (
     <HStack
       w="100%"
@@ -35,6 +41,7 @@ function NavLink({ icon, url, label }) {
       _hover={{
         background: "whiteAlpha.200",
       }}
+      onClick={handleClick}
     >
       {icon}
       <Text>{label}</Text>

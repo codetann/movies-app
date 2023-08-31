@@ -1,13 +1,18 @@
 import { Box, Image, Text } from "@chakra-ui/react";
 import { FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function MovieCard({ movie }) {
   const poster = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
+  const navigate = useNavigate();
 
   return (
     <Box
       position="relative"
       transition="all 0.1s ease-in-out"
+      onClick={() => {
+        navigate(`/movie/${movie.id}`);
+      }}
       _hover={{
         transform: "scale(0.98)",
         opacity: 0.8,

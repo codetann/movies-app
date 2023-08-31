@@ -1,6 +1,6 @@
 import { HStack, VStack } from "@chakra-ui/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home } from "./pages";
+import { Home, Movie } from "./pages";
 import { Navigation } from "./components";
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/movie/:id" element={<Movie />} />
         </Routes>
       </BrowserRouter>
     </HStack>

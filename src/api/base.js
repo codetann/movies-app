@@ -1,19 +1,12 @@
+import { Cache } from "../lib/cache";
+
 export class BaseApi {
   endpoint = "https://api.themoviedb.org/3";
-
-  #cacheResponse = (url, data) => {
-    const cache = JSON.parse(localStorage.getItem("cache")) || {};
-    cache[url] = data;
-    localStorage.setItem("cache", JSON.stringify(cache));
-  };
-
-  #getCachedResponse = (url) => {
-    const cache = JSON.parse(localStorage.getItem("cache")) || {};
-    return cache[url];
-  };
+  cache = new Cache("tmdb");
 
   async get(url) {
-    const cachedResponse = this.#getCachedResponse(url);
+    const cachedResponse = this.cache.get(url);
+
     if (cachedResponse) {
       return cachedResponse;
     }
@@ -23,7 +16,7 @@ export class BaseApi {
     );
     const data = await response.json();
 
-    this.#cacheResponse(url, data);
+    this.cache.set(url, data);
 
     return data;
   }

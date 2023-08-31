@@ -24,6 +24,10 @@ class Movies extends BaseApi {
   async getGenres() {
     return await this.get("/genre/movie/list");
   }
+
+  async getMovieById(id) {
+    return await this.get(`/movie/${id}`);
+  }
 }
 
 export const movies = new Movies();
